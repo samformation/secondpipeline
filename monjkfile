@@ -1,32 +1,36 @@
 pipeline {
-    agent any
+  agent any
 
-    stages {
+  stages {
+    stage ('Test microservice') {
+      parallel {
       
-      stage('local node') {
-        agent {
+      /* premier docker */
+        stage('front end') {
+          agent {
             docker {
                 image 'node:16.13.1-alpine'
-                args '-v /root/.m2:/tmp/m2'
             }
-        }
-        steps {
+         }
+         steps {
             sh 'node --version'
-            sh 'echo bonjour > /tmp/m2/fichier'
+            sh 'sleep 60'
+         }
         }
-      }
     
-      stage('Test') {
+      /* second docker */
+       stage('back end') {
           agent {
             docker {
               image 'maven:3.9.0-eclipse-temurin-11'
-              args '-v /root/.m2:/tmp/m2/'
             }
           }
             steps {
                 sh 'mvn --version'
-                sh 'cat /tmp/m2/fichier'
+                sh 'sleep 60'
             }
         }
+        }
+       }
     }
 }
