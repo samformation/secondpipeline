@@ -2,15 +2,12 @@ pipeline {
   agent { dockerfile true }
 
   stages {
-    stage ('env docker dedicated') {
-
-        stage('front end') {
+      stage('front end') {
          steps {
             sh 'node --version'
             sh 'svn --version'
          }
         }
      }
-   }
  }
    
