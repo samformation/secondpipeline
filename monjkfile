@@ -23,8 +23,9 @@ pipeline {
               echo "message parralele deux"
            }
          }
+     }
     }
-  }
+    }
 }
 
 
