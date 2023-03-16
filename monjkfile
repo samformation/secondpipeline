@@ -3,24 +3,26 @@ pipeline {
   
   stages {
     stage('construction') {
+
       stages {
         stage('construction1') {
-         steps {
+          steps {
            echo "etape de construction : initialisation"
            sh 'make main'
            sh 'ls'
            archiveArtifacts artifacts: 'main', fingerprint: true
-         }
-       }
-      stage(construction2) {
-         when {
-          changelog '.* production .*'
+          }
         }
-        steps {
-           echo "etape de construction : finalisation"
+        stage(construction2) {
+          when {
+             changelog '.* production .*'
+          }
+          steps {
+             echo "etape de construction : finalisation"
             sh 'strip main'
-         }
-       }
+          }
+        }
+      }
     }
   
   stage('test') {
