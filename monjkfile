@@ -7,7 +7,6 @@ pipeline {
         stage('local node') {
           steps {
             sh 'node --version'
-            sh 'mvn --version'
           }
         }
     
@@ -17,7 +16,7 @@ pipeline {
           }
             steps {
                 sh 'mvn --version'
-                sh 'node --version'
+        
             }
         }
     }
