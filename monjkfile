@@ -1,36 +1,16 @@
 pipeline {
-  agent any
+  agent { dockerfile true }
 
   stages {
-    stage ('Test microservice') {
-      parallel {
-      
-      /* premier docker */
+    stage ('env docker dedicated') {
+
         stage('front end') {
-          agent {
-            docker {
-                image 'node:16.13.1-alpine'
-            }
-         }
          steps {
             sh 'node --version'
-            sh 'sleep 60'
+            sh 'svn --version'
          }
         }
-    
-      /* second docker */
-       stage('back end') {
-          agent {
-            docker {
-              image 'maven:3.9.0-eclipse-temurin-11'
-            }
-          }
-            steps {
-                sh 'mvn --version'
-                sh 'sleep 60'
-            }
-        }
-        }
-       }
-    }
-}
+     }
+   }
+ }
+   
