@@ -20,11 +20,11 @@ pipeline {
     }
 
     stage('deploiement') {
-      when {
-        changelog '.* deploy .*'
-      }
       steps {
         echo 'etape de deploiement'
+      }
+      when {
+        changelog '.* deploy .*'
       }
     }
   }
