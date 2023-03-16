@@ -6,8 +6,16 @@ pipeline {
     stage('build') {
       steps {
         echo "etape de test"
-        sh 'make main'
-        echo "${env.BUILD_NUMBER}"
+        sh 'tree /tmp'
+      }
+    }
+    stage('build en LANG=C') {
+      environment {
+        LANG = 'C'
+      }
+      steps {
+        echo "etape de test avec environnement"
+        sh 'tree /tmp'
       }
     }
   }
