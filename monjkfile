@@ -10,6 +10,7 @@ pipeline {
         sh 'mv main main-${env.BUILD_NUMBER}'
       }
     }
+  }
 }
 
 
