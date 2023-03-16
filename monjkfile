@@ -21,9 +21,7 @@ pipeline {
 
     stage('deploiement') {
       when {
-        expression {
-          currentBuild.result == 'SUCCESS'
-        }
+        changelog '.* deploy .*'
       }
       steps {
         echo 'etape de deploiement'
