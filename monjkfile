@@ -19,5 +19,15 @@ pipeline {
       }
     }
 
+    stage('deploiement') {
+      when {
+        expression {
+          currentBuild.result == null || currentBuild == 'SUCCESS'
+        }
+      }
+      steps {
+        sh 'etape de deploiement'
+      }
+    }
   }
 }
