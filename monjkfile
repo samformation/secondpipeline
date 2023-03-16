@@ -3,28 +3,12 @@ pipeline {
   
   stages {
  
-    stage('test') {
+    stage('build') {
       steps {
         echo "etape de test"
-        sleep 10
+        sh 'make main'
+        sh 'mv main main-${env.BUILD_NUMBER}'
       }
-    }
-
-    stage('deploiement') {
-    parallel { 
-         stage('tache parallele une') {
-           steps {
-             echo "message parrallele un"
-             sleep 10
-           }
-         }
-         stage('tache parrallele deux') {
-           steps {
-              echo "message parralele deux"
-           }
-         }
-     }
-    }
     }
 }
 
