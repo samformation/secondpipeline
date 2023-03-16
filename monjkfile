@@ -7,6 +7,7 @@ pipeline {
         echo "etape de construction"
         sh 'make main'
         sh 'ls'
+        archiveArtifacts artifacts: 'main', fingerprint: true
       }
     }   
 
