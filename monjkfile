@@ -7,7 +7,7 @@ pipeline {
       steps {
         echo "etape de test"
         sh 'make main'
-        sh 'mv main main-${env.BUILD_NUMBER}'
+        echo '${env.BUILD_NUMBER}'
       }
     }
   }
