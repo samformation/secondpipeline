@@ -9,7 +9,15 @@ pipeline {
         sh 'ls'
         archiveArtifacts artifacts: 'main', fingerprint: true
       }
-    }   
+    }
+    
+    stage('test') {
+      steps {
+        echo "etape de test"
+        sh 'ls'
+        junit '*.xml'
+      }
+    }
 
   }
 }
