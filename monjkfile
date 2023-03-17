@@ -1,10 +1,18 @@
 pipeline {
-  agent { label 'production' }
+  agent { label '! production' }
 
   stages {
-      stage('agent production') {
+      stage('Build') {
+         agent { label 'linux' } 
          steps {
-            echo 'note depuis le depot'
+            echo 'build'
+            sh 'sleep 10'
+         }
+        }
+      stage('Deploiement') {
+         agent { label 'production' } 
+         steps {
+            echo 'ndeploy'
             sh 'sleep 10'
          }
         }
